@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">PersonalFinanceTracker</string>
+
+    <!-- Dashboard Strings -->
+    <string name="dashboard_header_title">Tổng quan tài chính</string>
+    <string name="dashboard_header_subtitle">Theo dõi số dư và 5 giao dịch gần nhất</string>
+    <string name="dashboard_balance_label">TỔNG SỐ DƯ HIỆN TẠI</string>
+    <string name="dashboard_income_label">Thu nhập</string>
+    <string name="dashboard_expense_label">Chi tiêu</string>
+    <string name="dashboard_recent_title">5 Giao dịch gần nhất</string>
+    <string name="dashboard_recent_subtitle">Danh sách thu chi vừa phát sinh</string>
+    <string name="dashboard_empty_text">Chưa có giao dịch nào</string>
+
+    <!-- Statistics Strings -->
+    <string name="statistics_header_title">Thống kê tài chính</string>
+    <string name="statistics_header_subtitle">Báo cáo thu chi và tỷ lệ phân loại danh mục</string>
+    <string name="statistics_comparison_title">SO SÁNH THU NHẬP &amp; CHI TIÊU</string>
+    <string name="statistics_total_income">Tổng Thu nhập</string>
+    <string name="statistics_total_expense">Tổng Chi tiêu</string>
+    <string name="statistics_category_breakdown_title">Phân loại chi tiêu</string>
+    <string name="statistics_category_breakdown_subtitle">Tỷ lệ chi tiêu chia theo từng danh mục</string>
+    <string name="statistics_empty_title">Không có dữ liệu trong tháng này</string>
+    <string name="statistics_empty_subtitle">Vui lòng chuyển sang tháng khác hoặc thêm giao dịch mới</string>
+    <string name="statistics_ratio_format">Chi tiêu chiếm %1$d%% tổng dòng tiền</string>
 </resources>

@@ -16,12 +16,12 @@ public class Transaction {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private double amount;
+    private long amount;
     private String note;
     private long dateInMillis;
     private int categoryId;
 
-    public Transaction(double amount, String note, long dateInMillis, int categoryId) {
+    public Transaction(long amount, String note, long dateInMillis, int categoryId) {
         this.amount = amount;
         this.note = note;
         this.dateInMillis = dateInMillis;
@@ -40,7 +40,7 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 

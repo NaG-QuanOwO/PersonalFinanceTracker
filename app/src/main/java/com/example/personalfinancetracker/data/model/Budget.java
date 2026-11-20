@@ -16,16 +16,13 @@ public class Budget {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private double targetAmount;
-    private long startDateInMillis;
-    private long endDateInMillis;
-    private int categoryId;
+    private String monthKey;
+    private long limitAmount;
 
-    public Budget(double targetAmount, long startDateInMillis, long endDateInMillis, int categoryId) {
-        this.targetAmount = targetAmount;
-        this.startDateInMillis = startDateInMillis;
-        this.endDateInMillis = endDateInMillis;
-        this.categoryId = categoryId;
+
+    public Budget(long limitAmount, String monthKey) {
+        this.limitAmount = limitAmount;
+        this.monthKey = monthKey;
     }
 
     public int getId() {
@@ -36,35 +33,20 @@ public class Budget {
         this.id = id;
     }
 
-    public double getTargetAmount() {
-        return targetAmount;
+    public long getLimitAmount() {
+        return limitAmount;
     }
 
-    public void setTargetAmount(double targetAmount) {
-        this.targetAmount = targetAmount;
+    public String getMonthKey() {
+        return monthKey;
     }
 
-    public long getStartDateInMillis() {
-        return startDateInMillis;
+    public void setLimitAmount(long limitAmount) {
+        this.limitAmount = limitAmount;
     }
 
-    public void setStartDateInMillis(long startDateInMillis) {
-        this.startDateInMillis = startDateInMillis;
-    }
-
-    public long getEndDateInMillis() {
-        return endDateInMillis;
-    }
-
-    public void setEndDateInMillis(long endDateInMillis) {
-        this.endDateInMillis = endDateInMillis;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setMonthKey(String monthKey) {
+        this.monthKey = monthKey;
     }
 }
+

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface BudgetDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Budget budget);
 
     @Update
@@ -21,12 +22,12 @@ public interface BudgetDao {
     @Delete
     void delete(Budget budget);
 
-
-    @Query("select * from budgets order by endDateInMillis asc")
+    @Query("SELECT * FROM budgets ORDER BY monthKey ASC")
     LiveData<List<Budget>> getAllBudgets();
 
-    @Query("select * from budgets where categoryId = :categoryId order by endDateInMillis asc")
-    LiveData<List<Budget>> getBudgetsByCategoryId(int categoryId);
+    @Query("SELECT * FROM budgets WHERE monthKey = :monthKey LIMIT 1")
+    LiveData<Budget> getBudgetByMonth(String monthKey);
 
-
+    @Query("SELECT * FROM budgets WHERE monthKey = :monthKey LIMIT 1")
+    Budget getBudgetByMonthSync(String monthKey);
 }

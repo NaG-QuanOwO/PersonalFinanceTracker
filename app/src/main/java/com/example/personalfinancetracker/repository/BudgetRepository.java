@@ -24,8 +24,21 @@ public class BudgetRepository {
         return allBudgets;
     }
 
-    public LiveData<List<Budget>> getBudgetByCategoryId(int categoryId) {
-        return budgetDao.getBudgetsByCategoryId(categoryId);
+    public LiveData<Budget> getBudgetByMonth(String monthKey) {
+        return budgetDao.getBudgetByMonth(monthKey);
+    }
+
+    public void saveOrUpdateBudget(String monthKey, long limitAmount) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            Budget existing = budgetDao.getBudgetByMonthSync(monthKey);
+            if (existing == null) {
+                Budget newBudget = new Budget(monthKey, limitAmount);
+                budgetDao.insert(newBudget);
+            } else {
+                existing.setLimitAmount(limitAmount);
+                budgetDao.update(existing);
+            }
+        });
     }
 
     public void insert(Budget budget) {
@@ -46,5 +59,3 @@ public class BudgetRepository {
         });
     }
 }
-
-

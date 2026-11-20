@@ -21,10 +21,12 @@ public interface CategoryDao {
     @Delete
     void delete(Category category);
 
-    @Query("select * from categories order by name asc")
+    @Query("SELECT * FROM categories ORDER BY name ASC")
     LiveData<List<Category>> getAllCategory();
 
-
-    @Query("select * from categories where type = :type order by name asc")
+    @Query("SELECT * FROM categories WHERE type = :type ORDER BY name ASC")
     LiveData<List<Category>> getCategoryByType(String type);
+
+    @Query("SELECT * FROM categories WHERE id = :id LIMIT 1")
+    Category getCategoryById(int id);
 }

@@ -1,16 +1,11 @@
 package com.example.personalfinancetracker.data.model;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "budgets",
-        foreignKeys = @ForeignKey(entity = Category.class,
-                                  parentColumns = "id",
-                                  childColumns = "categoryId",
-                                  onDelete = ForeignKey.RESTRICT),
-        indices = {@Index("categoryId")}
+        indices = {@Index(value = {"monthKey"}, unique = true)}
 )
 public class Budget {
     @PrimaryKey(autoGenerate = true)
@@ -19,10 +14,12 @@ public class Budget {
     private String monthKey;
     private long limitAmount;
 
-
-    public Budget(long limitAmount, String monthKey) {
-        this.limitAmount = limitAmount;
+    public Budget(String monthKey, long limitAmount) {
+        if (limitAmount <= 0) {
+            throw new IllegalArgumentException("limitAmount must be greater than 0");
+        }
         this.monthKey = monthKey;
+        this.limitAmount = limitAmount;
     }
 
     public int getId() {
@@ -33,20 +30,22 @@ public class Budget {
         this.id = id;
     }
 
-    public long getLimitAmount() {
-        return limitAmount;
-    }
-
     public String getMonthKey() {
         return monthKey;
-    }
-
-    public void setLimitAmount(long limitAmount) {
-        this.limitAmount = limitAmount;
     }
 
     public void setMonthKey(String monthKey) {
         this.monthKey = monthKey;
     }
-}
 
+    public long getLimitAmount() {
+        return limitAmount;
+    }
+
+    public void setLimitAmount(long limitAmount) {
+        if (limitAmount <= 0) {
+            throw new IllegalArgumentException("limitAmount must be greater than 0");
+        }
+        this.limitAmount = limitAmount;
+    }
+}
